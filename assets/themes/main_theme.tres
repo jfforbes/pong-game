@@ -1,0 +1,15 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cn5rdl0fk0svr"]
+
+[ext_resource type="FontFile" uid="uid://qel8yeqkkr0k" path="res://assets/fonts/Orbitron-VariableFont_wght.ttf" id="1_3f3va"]
+
+[resource]
+Button/font_sizes/font_size = 80
+Button/fonts/font = ExtResource("1_3f3va")
+CheckButton/constants/h_separation = 15
+CheckButton/font_sizes/font_size = 40
+Label/font_sizes/font_size = 60
+Label/fonts/font = ExtResource("1_3f3va")
+OptionButton/font_sizes/font_size = 40
+OptionButton/fonts/font = ExtResource("1_3f3va")
+PopupMenu/font_sizes/font_size = 30
+PopupMenu/fonts/font = ExtResource("1_3f3va")

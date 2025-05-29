@@ -1,0 +1,110 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2lsgf0q2adml"]
+
+[ext_resource type="Theme" uid="uid://cn5rdl0fk0svr" path="res://assets/themes/main_theme.tres" id="1_8gy84"]
+[ext_resource type="Script" uid="uid://d1vj6t8nepmm4" path="res://scripts/main_menu.gd" id="2_ij7vn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ij7vn"]
+bg_color = Color(0.387389, 0.387389, 0.387389, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 1, 0.392157, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yjgyn"]
+bg_color = Color(0, 1, 0.392157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.117647, 0.117647, 0.117647, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8gy84"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 1, 0.392157, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8gy84")
+script = ExtResource("2_ij7vn")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuOptions" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="GameModeLabel" type="Label" parent="CenterContainer/MenuOptions"]
+layout_mode = 2
+text = "Game Mode"
+
+[node name="GameModeOption" type="OptionButton" parent="CenterContainer/MenuOptions"]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "Player vs Player"
+popup/item_0/id = 0
+popup/item_1/text = "Player vs Computer"
+popup/item_1/id = 1
+
+[node name="DifficultyLabel" type="Label" parent="CenterContainer/MenuOptions"]
+layout_mode = 2
+text = "Difficulty"
+
+[node name="DifficultyOption" type="OptionButton" parent="CenterContainer/MenuOptions"]
+layout_mode = 2
+selected = 1
+item_count = 3
+popup/item_0/text = "Easy"
+popup/item_0/id = 0
+popup/item_1/text = "Normal"
+popup/item_1/id = 1
+popup/item_2/text = "Hard"
+popup/item_2/id = 2
+
+[node name="PowerUpsLabel" type="Label" parent="CenterContainer/MenuOptions"]
+layout_mode = 2
+text = "Power Ups"
+
+[node name="PowerUpsOption" type="HBoxContainer" parent="CenterContainer/MenuOptions"]
+layout_mode = 2
+alignment = 1
+
+[node name="PowerUpsToggle" type="CheckButton" parent="CenterContainer/MenuOptions/PowerUpsOption"]
+layout_mode = 2
+text = "On"
+
+[node name="StartButton" type="Button" parent="CenterContainer/MenuOptions"]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/hover = SubResource("StyleBoxFlat_ij7vn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yjgyn")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8gy84")
+text = "Start"

@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvp12gtxwwwq7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7dm0k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ig7tw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0xm2m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+
+[node name="main" type="Node2D"]
+
+[node name="GameElements" type="Node2D" parent="."]
+
+[node name="LeftPaddle" type="CharacterBody2D" parent="GameElements"]
+
+[node name="Sprite2D" type="Sprite2D" parent="GameElements/LeftPaddle"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameElements/LeftPaddle"]
+shape = SubResource("RectangleShape2D_7dm0k")
+
+[node name="RightPaddle" type="CharacterBody2D" parent="GameElements"]
+
+[node name="Sprite2D" type="Sprite2D" parent="GameElements/RightPaddle"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameElements/RightPaddle"]
+shape = SubResource("RectangleShape2D_ig7tw")
+
+[node name="Ball" type="CharacterBody2D" parent="GameElements"]
+
+[node name="Sprite2D" type="Sprite2D" parent="GameElements/Ball"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameElements/Ball"]
+shape = SubResource("CircleShape2D_0xm2m")
+
+[node name="TopWall" type="StaticBody2D" parent="GameElements"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameElements/TopWall"]
+shape = SubResource("RectangleShape2D_h2yge")
+
+[node name="BottomWall" type="StaticBody2D" parent="GameElements"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameElements/BottomWall"]
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="LeftScoreLabel" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="RightScoreLabel" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
