@@ -1,46 +1,79 @@
-[gd_scene load_steps=6 format=3 uid="uid://bvp12gtxwwwq7"]
+[gd_scene load_steps=13 format=3 uid="uid://bvp12gtxwwwq7"]
+
+[ext_resource type="Theme" uid="uid://cn5rdl0fk0svr" path="res://assets/themes/main_theme.tres" id="1_53q0u"]
+[ext_resource type="Script" uid="uid://k85jpb13oeg8" path="res://scripts/left_paddle.gd" id="1_c651c"]
+[ext_resource type="Texture2D" uid="uid://bh3nxiipvy7oj" path="res://assets/sprites/paddle.png" id="1_pjrb6"]
+[ext_resource type="Texture2D" uid="uid://bxitcdlp54e8d" path="res://assets/sprites/ball.png" id="3_3wy1v"]
+[ext_resource type="Script" uid="uid://cr4p57viqsmrf" path="res://scripts/ball.gd" id="3_kfbq2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7dm0k"]
+size = Vector2(20, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3wy1v"]
+size = Vector2(20, 100)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ig7tw"]
+size = Vector2(20, 100)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3wy1v"]
+bounce = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0xm2m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+size = Vector2(1280, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+size = Vector2(1280, 20)
 
 [node name="main" type="Node2D"]
 
 [node name="GameElements" type="Node2D" parent="."]
 
 [node name="LeftPaddle" type="CharacterBody2D" parent="GameElements"]
+position = Vector2(40, 360)
+script = ExtResource("1_c651c")
 
 [node name="Sprite2D" type="Sprite2D" parent="GameElements/LeftPaddle"]
+texture = ExtResource("1_pjrb6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameElements/LeftPaddle"]
 shape = SubResource("RectangleShape2D_7dm0k")
 
+[node name="PaddleDetector" type="Area2D" parent="GameElements/LeftPaddle"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameElements/LeftPaddle/PaddleDetector"]
+shape = SubResource("RectangleShape2D_3wy1v")
+
 [node name="RightPaddle" type="CharacterBody2D" parent="GameElements"]
+position = Vector2(1240, 360)
 
 [node name="Sprite2D" type="Sprite2D" parent="GameElements/RightPaddle"]
+texture = ExtResource("1_pjrb6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameElements/RightPaddle"]
 shape = SubResource("RectangleShape2D_ig7tw")
 
-[node name="Ball" type="CharacterBody2D" parent="GameElements"]
+[node name="Ball" type="RigidBody2D" parent="GameElements" groups=["ball_group"]]
+position = Vector2(640, 360)
+physics_material_override = SubResource("PhysicsMaterial_3wy1v")
+gravity_scale = 0.0
+script = ExtResource("3_kfbq2")
 
 [node name="Sprite2D" type="Sprite2D" parent="GameElements/Ball"]
+texture = ExtResource("3_3wy1v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameElements/Ball"]
 shape = SubResource("CircleShape2D_0xm2m")
 
 [node name="TopWall" type="StaticBody2D" parent="GameElements"]
+position = Vector2(640, 10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameElements/TopWall"]
 shape = SubResource("RectangleShape2D_h2yge")
 
 [node name="BottomWall" type="StaticBody2D" parent="GameElements"]
+position = Vector2(640, 710)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameElements/BottomWall"]
 shape = SubResource("RectangleShape2D_1bvp3")
@@ -48,9 +81,19 @@ shape = SubResource("RectangleShape2D_1bvp3")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="LeftScoreLabel" type="Label" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 60.0
+offset_top = 30.0
+offset_right = 110.0
+offset_bottom = 106.0
+theme = ExtResource("1_53q0u")
+text = "0"
 
 [node name="RightScoreLabel" type="Label" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 1180.0
+offset_top = 30.0
+offset_right = 1230.0
+offset_bottom = 106.0
+theme = ExtResource("1_53q0u")
+text = "0"
+
+[connection signal="body_entered" from="GameElements/LeftPaddle/PaddleDetector" to="GameElements/LeftPaddle" method="_on_paddle_detector_body_entered"]
