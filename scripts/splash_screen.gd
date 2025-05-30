@@ -2,6 +2,7 @@
 extends Control
 
 @onready var animation_player_node = get_node("AnimationPlayer")
+
 var can_skip_splash = false
 
 func _ready():

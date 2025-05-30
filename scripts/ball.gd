@@ -1,8 +1,8 @@
 extends RigidBody2D
 
-const MIN_HORIZONTAL_VELOCITY_RATIO = 0.25
+const MIN_HORIZONTAL_VELOCITY_RATIO = 0.30
 const MIN_VERTICAL_VELOCITY_RATIO = 0.25
-const NUDGE_TARGET_COMPONENT_RATIO = 0.35
+const NUDGE_TARGET_COMPONENT_RATIO = 0.45
 
 @export var initial_speed: float = 400.0 #initial speed
 @export var speed: float = initial_speed #setting speed to initial speed
@@ -115,6 +115,7 @@ func update_score(scoring_player: String) -> void:
 		left_score_label.text = str(left_score)
 		#if score exceeds score to win, go to splash screen
 		if left_score >= GameSettings.score_to_win :
+			GameSettings.winner = "Left"
 			get_tree().change_scene_to_file("res://menus/winner_screen.tscn")
 	elif scoring_player == "right":
 		print("Right scores!")
@@ -122,6 +123,7 @@ func update_score(scoring_player: String) -> void:
 		right_score_label.text = str(right_score)
 		#if score exceeds score to win, go to splash screen
 		if right_score >= GameSettings.score_to_win:
+			GameSettings.winner = "Right"
 			get_tree().change_scene_to_file("res://menus/winner_screen.tscn")
 		
 	print("Score: Left ", left_score, " - Right ", right_score)

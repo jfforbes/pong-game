@@ -1,21 +1,93 @@
-[gd_scene load_steps=2 format=3 uid="uid://4ffolx4h420x"]
+[gd_scene load_steps=6 format=3 uid="uid://4ffolx4h420x"]
 
 [ext_resource type="Script" uid="uid://c6exfx5sai827" path="res://scripts/winner_screen.gd" id="1_qeicw"]
+[ext_resource type="Theme" uid="uid://cn5rdl0fk0svr" path="res://assets/themes/main_theme.tres" id="2_cixd8"]
+
+[sub_resource type="Animation" id="Animation_cixd8"]
+resource_name = "flash"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/CenterContainer/WinnerLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(0, 1, 0.392157, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_b1wj0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/CenterContainer/WinnerLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 1, 0.392157, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sj1v5"]
+_data = {
+&"RESET": SubResource("Animation_b1wj0"),
+&"flash": SubResource("Animation_cixd8")
+}
 
 [node name="WinnerScreen" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-script = ExtResource("1_qeicw")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Label" type="Label" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_qeicw")
 
-[node name="Button" type="Button" parent="CanvasLayer"]
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="BottomAreaMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.61
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_bottom = 100
+
+[node name="CenterContainer" type="CenterContainer" parent="BottomAreaMargin"]
+layout_mode = 2
+
+[node name="GoToMainMenu" type="Label" parent="BottomAreaMargin/CenterContainer"]
+layout_mode = 2
+theme = ExtResource("2_cixd8")
+text = "Press Any Key To Return
+To Main Menu"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_sj1v5")
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.337
+anchor_right = 1.0
+anchor_bottom = 0.337
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="WinnerLabel" type="Label" parent="MarginContainer/CenterContainer"]
+modulate = Color(0, 1, 0.392157, 1)
+layout_mode = 2
+theme = ExtResource("2_cixd8")
+text = "TEST ME"

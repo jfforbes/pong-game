@@ -99,7 +99,8 @@ alignment = 1
 
 [node name="PowerUpsToggle" type="CheckButton" parent="CenterContainer/MenuOptions/PowerUpsOption"]
 layout_mode = 2
-text = "On"
+size_flags_horizontal = 3
+text = "On "
 
 [node name="StartButton" type="Button" parent="CenterContainer/MenuOptions"]
 layout_mode = 2

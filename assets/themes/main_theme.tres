@@ -1,12 +1,59 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cn5rdl0fk0svr"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cn5rdl0fk0svr"]
 
 [ext_resource type="FontFile" uid="uid://qel8yeqkkr0k" path="res://assets/fonts/Orbitron-VariableFont_wght.ttf" id="1_3f3va"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3f3va"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 1, 0.392157, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhku8"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 1, 0.392157, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lxams"]
+bg_color = Color(0, 1, 0.392157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gvtt4"]
+bg_color = Color(0, 0, 0, 1)
+
 [resource]
+Button/colors/font_pressed_color = Color(0.117647, 0.117647, 0.117647, 1)
 Button/font_sizes/font_size = 80
 Button/fonts/font = ExtResource("1_3f3va")
+Button/styles/hover = SubResource("StyleBoxFlat_3f3va")
+Button/styles/normal = SubResource("StyleBoxFlat_vhku8")
+Button/styles/pressed = SubResource("StyleBoxFlat_lxams")
 CheckButton/constants/h_separation = 15
 CheckButton/font_sizes/font_size = 40
+CheckButton/styles/normal = SubResource("StyleBoxFlat_gvtt4")
 Label/font_sizes/font_size = 60
 Label/fonts/font = ExtResource("1_3f3va")
 OptionButton/font_sizes/font_size = 40
