@@ -1,6 +1,7 @@
 extends StaticBody2D
 
-@export var speed: float = 500.0
+@export var base_speed: float = 500.0
+@export var speed: float = base_speed
 
 @export var min_y_position: float = 20.0
 @export var max_y_position: float = 700.0
@@ -34,11 +35,15 @@ func _physics_process(delta: float) -> void:
 	var direction: float = 0.0
 	
 	#input for moving up with W
-	if Input.is_action_pressed("move_up_left"):
-		direction = -1.0
-	#move down with S
-	if Input.is_action_pressed("move_down_left"):
-		direction = 1.0
+	if GameSettings.game_mode == "Player vs Player":
+		if Input.is_action_pressed("move_up_right"):
+			direction = -1.0
+		#move down with S
+		if Input.is_action_pressed("move_down_right"):
+			direction = 1.0
+	
+	elif GameSettings.game_mode == "Player vs Computer":
+		smart_move()
 	
 	if direction != 0:
 		var new_y = position.y + (direction * speed * delta)
@@ -51,6 +56,9 @@ func _physics_process(delta: float) -> void:
 				half_paddle_height = (sprite.texture.get_height() * sprite.scale.y) / 2.0
 		position.y = clamp(new_y, half_paddle_height, screen_height - half_paddle_height)
 
+func smart_move() -> void:
+	return
+	#implement ai
 	
 	
 func attempt_flash() -> void:
@@ -75,7 +83,7 @@ func _on_flash_timer_timeout() -> void:
 func _on_paddle_detector_body_entered(body: PhysicsBody2D) -> void:
 	print("collision detected! Body", body.name, " at time: ", Time.get_ticks_msec())
 	if body is RigidBody2D and body.name == "Ball": #if it's the ball
-		print("collision detected with left paddle, changing speed. trying to flash")
+		print("collision detected with right paddle, trying to flash, increasing speed")
 		#increase the ball's speed
 		GameSettings.ball_speed_multiplier += 0.05
 		GameSettings.speed *= GameSettings.ball_speed_multiplier

@@ -1,16 +1,17 @@
-[gd_scene load_steps=13 format=3 uid="uid://bvp12gtxwwwq7"]
+[gd_scene load_steps=14 format=3 uid="uid://bvp12gtxwwwq7"]
 
 [ext_resource type="Theme" uid="uid://cn5rdl0fk0svr" path="res://assets/themes/main_theme.tres" id="1_53q0u"]
 [ext_resource type="Script" uid="uid://k85jpb13oeg8" path="res://scripts/left_paddle.gd" id="1_c651c"]
 [ext_resource type="Texture2D" uid="uid://bh3nxiipvy7oj" path="res://assets/sprites/paddle.png" id="1_pjrb6"]
 [ext_resource type="Texture2D" uid="uid://bxitcdlp54e8d" path="res://assets/sprites/ball.png" id="3_3wy1v"]
+[ext_resource type="Script" uid="uid://58aqx8xmwqko" path="res://scripts/right_paddle.gd" id="3_4dugh"]
 [ext_resource type="Script" uid="uid://cr4p57viqsmrf" path="res://scripts/ball.gd" id="3_kfbq2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7dm0k"]
 size = Vector2(20, 100)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3wy1v"]
-size = Vector2(20, 100)
+size = Vector2(5, 100)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ig7tw"]
 size = Vector2(20, 100)
@@ -30,8 +31,10 @@ size = Vector2(1280, 20)
 
 [node name="GameElements" type="Node2D" parent="."]
 
-[node name="LeftPaddle" type="CharacterBody2D" parent="GameElements"]
+[node name="LeftPaddle" type="StaticBody2D" parent="GameElements"]
 position = Vector2(40, 360)
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_c651c")
 
 [node name="Sprite2D" type="Sprite2D" parent="GameElements/LeftPaddle"]
@@ -41,12 +44,16 @@ texture = ExtResource("1_pjrb6")
 shape = SubResource("RectangleShape2D_7dm0k")
 
 [node name="PaddleDetector" type="Area2D" parent="GameElements/LeftPaddle"]
+collision_layer = 8
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameElements/LeftPaddle/PaddleDetector"]
+position = Vector2(7.5, 0)
 shape = SubResource("RectangleShape2D_3wy1v")
 
-[node name="RightPaddle" type="CharacterBody2D" parent="GameElements"]
+[node name="RightPaddle" type="StaticBody2D" parent="GameElements"]
 position = Vector2(1240, 360)
+script = ExtResource("3_4dugh")
 
 [node name="Sprite2D" type="Sprite2D" parent="GameElements/RightPaddle"]
 texture = ExtResource("1_pjrb6")
@@ -54,10 +61,21 @@ texture = ExtResource("1_pjrb6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameElements/RightPaddle"]
 shape = SubResource("RectangleShape2D_ig7tw")
 
-[node name="Ball" type="RigidBody2D" parent="GameElements" groups=["ball_group"]]
+[node name="PaddleDetector" type="Area2D" parent="GameElements/RightPaddle"]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameElements/RightPaddle/PaddleDetector"]
+position = Vector2(-7, 0)
+shape = SubResource("RectangleShape2D_3wy1v")
+
+[node name="Ball" type="RigidBody2D" parent="GameElements"]
 position = Vector2(640, 360)
+collision_layer = 4
+collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_3wy1v")
 gravity_scale = 0.0
+continuous_cd = 1
 script = ExtResource("3_kfbq2")
 
 [node name="Sprite2D" type="Sprite2D" parent="GameElements/Ball"]
@@ -97,3 +115,4 @@ theme = ExtResource("1_53q0u")
 text = "0"
 
 [connection signal="body_entered" from="GameElements/LeftPaddle/PaddleDetector" to="GameElements/LeftPaddle" method="_on_paddle_detector_body_entered"]
+[connection signal="body_entered" from="GameElements/RightPaddle/PaddleDetector" to="GameElements/RightPaddle" method="_on_paddle_detector_body_entered"]
