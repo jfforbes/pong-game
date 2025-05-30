@@ -1,43 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2lsgf0q2adml"]
+[gd_scene load_steps=3 format=3 uid="uid://d2lsgf0q2adml"]
 
 [ext_resource type="Theme" uid="uid://cn5rdl0fk0svr" path="res://assets/themes/main_theme.tres" id="1_8gy84"]
 [ext_resource type="Script" uid="uid://d1vj6t8nepmm4" path="res://scripts/main_menu.gd" id="2_ij7vn"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ij7vn"]
-bg_color = Color(0.387389, 0.387389, 0.387389, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 1, 0.392157, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yjgyn"]
-bg_color = Color(0, 1, 0.392157, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.117647, 0.117647, 0.117647, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8gy84"]
-bg_color = Color(0.117647, 0.117647, 0.117647, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 1, 0.392157, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -102,10 +66,15 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "On "
 
-[node name="StartButton" type="Button" parent="CenterContainer/MenuOptions"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MenuOptions"]
 layout_mode = 2
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_styles/hover = SubResource("StyleBoxFlat_ij7vn")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_yjgyn")
-theme_override_styles/normal = SubResource("StyleBoxFlat_8gy84")
+theme_override_constants/separation = 50
+
+[node name="StartButton" type="Button" parent="CenterContainer/MenuOptions/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_8gy84")
 text = "Start"
+
+[node name="ControlsButton" type="Button" parent="CenterContainer/MenuOptions/HBoxContainer"]
+layout_mode = 2
+text = "Controls"

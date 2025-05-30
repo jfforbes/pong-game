@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://c81uqvtxindut"]
+
+[ext_resource type="Script" uid="uid://mq6rv2hkcbvw" path="res://scripts/controls_screen.gd" id="1_6k1cn"]
+[ext_resource type="Theme" uid="uid://cn5rdl0fk0svr" path="res://assets/themes/main_theme.tres" id="1_tfg06"]
+
+[node name="ControlsScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6k1cn")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer"]
+layout_mode = 2
+theme = ExtResource("1_tfg06")
+theme_override_font_sizes/font_size = 45
+text = "Player 1:
+Up: W 
+Down: S
+
+Player 2:
+Up: Up Arrow 
+Down: Down Arrow
+
+Press any key to
+return to Main Menu"
+horizontal_alignment = 1

@@ -1,8 +1,8 @@
 extends RigidBody2D
 
-const MIN_HORIZONTAL_VELOCITY_RATIO = 0.30
-const MIN_VERTICAL_VELOCITY_RATIO = 0.25
-const NUDGE_TARGET_COMPONENT_RATIO = 0.45
+const MIN_HORIZONTAL_VELOCITY_RATIO = 0.15
+const MIN_VERTICAL_VELOCITY_RATIO = 0.15
+const NUDGE_TARGET_COMPONENT_RATIO = 0.25
 
 @export var initial_speed: float = 400.0 #initial speed
 @export var speed: float = initial_speed #setting speed to initial speed
@@ -21,6 +21,11 @@ var right_score: int = 0 #initial score for right
 func _ready() -> void:
 	gravity_scale = 0.0 #ensure gravity is 0
 	randomize() #ensuring random number
+	
+	if GameSettings.difficulty == "Easy":
+		max_speed = 600.0
+	if GameSettings.difficulty == "Hard":
+		max_speed = 1000.0
 	
 	if not launch_delay_timer.get_parent(): 
 		launch_delay_timer.name = "Launch Delay Timer"

@@ -6,7 +6,8 @@ extends Control
 @onready var difficulty_option : OptionButton = get_node("CenterContainer/MenuOptions/DifficultyOption")
 @onready var difficulty_label : Label = get_node("CenterContainer/MenuOptions/DifficultyLabel")
 @onready var power_ups_toggle : CheckButton = get_node("CenterContainer/MenuOptions/PowerUpsOption/PowerUpsToggle")
-@onready var start_button : Button = get_node("CenterContainer/MenuOptions/StartButton")
+@onready var start_button : Button = get_node("CenterContainer/MenuOptions/HBoxContainer/StartButton")
+@onready var controls_button : Button = get_node("CenterContainer/MenuOptions/HBoxContainer/ControlsButton")
 
 func _ready():
 	game_mode_option.item_selected.connect(on_game_mode_selected)
@@ -17,6 +18,7 @@ func _ready():
 	on_game_mode_selected(game_mode_option.selected)
 	
 	start_button.pressed.connect(on_start_button_pressed)
+	controls_button.pressed.connect(on_controls_button_pressed)
 	
 func on_game_mode_selected(index):
 	# index 0 = player vs player, 1 = player vs computer
@@ -47,3 +49,7 @@ func on_start_button_pressed():
 	print("---------------------------")
 	
 	get_tree().change_scene_to_file("res://main/main.tscn")
+
+func on_controls_button_pressed():
+	get_tree().change_scene_to_file("res://menus/controls_screen.tscn")
+	
